@@ -1,0 +1,16 @@
+div.ex1 {
+    margin-top:5px;
+}
+
+div.ex2 {
+    margin-top:10px;
+}
+
+div.ex3 {
+    margin-bottom:10px;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
