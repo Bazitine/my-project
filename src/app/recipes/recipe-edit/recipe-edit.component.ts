@@ -1,8 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, NgModule, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { RecipeService } from '../recipe.service';
+
+@NgModule({
+  imports: [
+    ReactiveFormsModule
+  ]
+})
 
 @Component({
   selector: 'app-recipe-edit',
@@ -30,8 +36,6 @@ export class RecipeEditComponent implements OnInit {
     );
   }
 
-  
-
   private initForm() {
     let recipeName = '';
     let recipeImagePath = '';
@@ -50,8 +54,9 @@ export class RecipeEditComponent implements OnInit {
               'name': new FormControl(ingredient.name, Validators.required),
               'amount': new FormControl(ingredient.amount, [
                 Validators.required,
-                Validators.pattern(/^[1-9]+[0-9]*$/)
-              ])
+                Validators.pattern(/^(0|[1-9]\d*)(\.\d+)?$/)
+              ]),
+              'measurement': new FormControl(ingredient.measurement)
             })
           );
         }
@@ -78,9 +83,9 @@ export class RecipeEditComponent implements OnInit {
     } else {
       this.recipeService.addRecipe(this.recipeForm.value);
     }
-    setTimeout(() => {
-      this.router.navigate(['../'], {relativeTo: this.route});
-    }, 50);
+    // setTimeout(() => {
+    //   this.router.navigate(['../'], {relativeTo: this.route});
+    // }, 50);
   }
 
   onCancel() {
@@ -101,8 +106,9 @@ export class RecipeEditComponent implements OnInit {
         'name': new FormControl(null, Validators.required),
         'amount': new FormControl(null, [
           Validators.required,
-          Validators.pattern(/^[1-9]+[0-9]*$/)
-        ])
+          Validators.pattern(/^(0|[1-9]\d*)(\.\d+)?$/)
+        ]),
+        'measurement': new FormControl(null)
       })
     )
   }  

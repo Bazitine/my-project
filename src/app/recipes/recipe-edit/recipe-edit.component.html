@@ -47,13 +47,27 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12" formArrayName="ingredients">
-                    <label for="ingredients">Ingredients</label>
+                <div class="col-xs-12 text-center" formArrayName="ingredients">
                     <div 
-                        class="row ex1"
+                        class="row ex1">
+                        <div class="col-xs-6 text-left">
+                            <label for="ingredients">Ingredients</label>
+                        </div>
+                        <div class="col-xs-2">
+                            <label for="qty">Quantity</label>
+                        </div>
+                        <div class="col-xs-2">
+                            <label for="msrmnt">Measurement</label>
+                        </div>
+                        <div class="col-xs-2">
+                            <label for="remove">Remove</label>
+                        </div>
+                    </div>
+                    <div 
+                        class="row ex1 text-center"
                         *ngFor="let ingredientCtrl of recipeForm.get('ingredients')['controls']; let i = index" 
                         [formGroupName]="i">
-                        <div class="col-xs-8">
+                        <div class="col-xs-6">
                             <input
                                 type="text" 
                                 class="form-control"
@@ -61,21 +75,28 @@
                         </div>
                         <div class="col-xs-2">
                             <input 
-                                type="number" 
+                                type="number"
+                                step=".25"
+                                min="0" 
                                 class="form-control"
                                 formControlName="amount">
                         </div>
                         <div class="col-xs-2">
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                formControlName="measurement">
+                        </div>
+                        <div class="col-xs-2">
                             <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button>
                         </div>
-                        
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12 ex2 btn-toolbar">
                     <button type="button" class="btn btn-success" (click)="onAddIngredient()">+</button>
-                    <button type="button" class="btn btn-danger" (click)="onRemoveAllIngredients()">Remove All Ingredients</button>
+                    <button type="button" class="btn btn-danger" (click)="onRemoveAllIngredients()" *ngIf="this.recipeForm.get('ingredients').length > 1">Remove All Ingredients</button>
                 </div>
                 
             </div>
