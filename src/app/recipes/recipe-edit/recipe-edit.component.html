@@ -65,7 +65,7 @@
                     </div>
                     <div 
                         class="row ex1 text-center"
-                        *ngFor="let ingredientCtrl of recipeForm.get('ingredients')['controls']; let i = index" 
+                        *ngFor="let ingredientCtrl of ingredientsControls; let i = index" 
                         [formGroupName]="i">
                         <div class="col-xs-6">
                             <input
@@ -96,7 +96,7 @@
             <div class="row">
                 <div class="col-xs-12 ex2 btn-toolbar">
                     <button type="button" class="btn btn-success" (click)="onAddIngredient()">+</button>
-                    <button type="button" class="btn btn-danger" (click)="onRemoveAllIngredients()" *ngIf="this.recipeForm.get('ingredients').length > 1">Remove All Ingredients</button>
+                    <button type="button" class="btn btn-danger" (click)="onRemoveAllIngredients()" *ngIf="this.ingredientsControls.length > 1">Remove All Ingredients</button>
                 </div>
                 
             </div>

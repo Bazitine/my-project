@@ -1,14 +1,8 @@
-import { Component, NgModule, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { RecipeService } from '../recipe.service';
-
-@NgModule({
-  imports: [
-    ReactiveFormsModule
-  ]
-})
 
 @Component({
   selector: 'app-recipe-edit',
@@ -19,6 +13,10 @@ export class RecipeEditComponent implements OnInit {
   id: number;
   editMode = false;
   recipeForm: FormGroup;
+
+  get ingredientsControls() {
+    return (this.recipeForm.get('ingredients') as FormArray).controls
+  }
 
   constructor(private route: ActivatedRoute,
               private recipeService: RecipeService,
