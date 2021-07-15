@@ -48,7 +48,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 text-center" formArrayName="ingredients">
-                    <div 
+                    <div *ngIf="ingredientsControls.length > 0"
                         class="row ex1">
                         <div class="col-xs-6 text-left">
                             <label for="ingredients">Ingredients</label>
@@ -95,7 +95,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 ex2 btn-toolbar">
-                    <button type="button" class="btn btn-success" (click)="onAddIngredient()">+</button>
+                    <button type="button" class="btn btn-success" (click)="onAddIngredient()">{{ ingredientsControls.length > 0 ? '+' : 'Add Ingredient'}}</button>
                     <button type="button" class="btn btn-danger" (click)="onRemoveAllIngredients()" *ngIf="this.ingredientsControls.length > 1">Remove All Ingredients</button>
                 </div>
                 

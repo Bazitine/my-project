@@ -6,10 +6,10 @@
             <a 
                 class="list-group-item" 
                 style="cursor: pointer"
-                *ngFor="let ingredient of ingredients; let i = index"
+                *ngFor="let ingredient of (ingredients | async).ingredients; let i = index"
                 (click)="onEditItem(i)"
                 >{{ ingredient.name }} ({{ ingredient.amount }}) {{ ingredient.measurement }}</a>
-                <div style="margin-top: 10px" *ngIf="ingredients.length != 0">
+                <div style="margin-top: 10px" *ngIf="(ingredients | async).ingredients != 0">
                     <button class="btn btn-danger" (click)="onClearList()">Clear List</button>
                 </div>
         </ul>
